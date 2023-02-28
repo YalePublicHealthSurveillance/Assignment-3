@@ -12,3 +12,12 @@ knitr::opts_chunk$set(echo = TRUE)
 d1 <- read.csv('./Data/ct_resp.csv')
 ```
 
+
+```{r}
+mod1 <- glm(resp ~ hh.size, offset=log(pop), data=d1, family='poisson')
+
+d1$fitted1 <- predict(mod1, type='response')
+
+write.csv(d1,'./Data/ct_resp.csv')
+```
+
